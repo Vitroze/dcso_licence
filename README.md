@@ -11,6 +11,7 @@ Ce programme permet de rechercher et de filtrer les licences d'armes et permis p
 - Recherche par numéro de série, nom, prénom, adresse de résidence et date de naissance
 - Filtrage par type d'arme et type de permis
 - Affichage des résultats dans une interface graphique
+- Seuls les 1000 premiers résultats sont affichés
 
 ## Installation
 
