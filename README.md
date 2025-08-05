@@ -4,7 +4,7 @@ Cet outil est destiné au DCSO (Davidson County Sheriff's Office) du serveur GTA
 
 ## Description
 
-Ce programme permet de rechercher et de filtrer les licences d'armes et permis port d'arme des joueurs du serveur GTACity RP. Il utilise des données extraites de Google Sheets et propose une interface graphique simple via Tkinter.
+Ce programme permet de rechercher et de filtrer les licences d'armes et permis port d'arme des joueurs du serveur GTACity RP. Il utilise des données extraites de [Google Sheets](https://docs.google.com/spreadsheets/d/1G1cOitq2COtwK_IDeZc4UjFvnWYv5_s5IGgoPuvmfMA/) et propose une interface graphique simple via Tkinter.
 
 ## Fonctionnalités
 
