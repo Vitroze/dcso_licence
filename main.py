@@ -1,6 +1,6 @@
+from tkinter import *
 import requests 
 import csv
-import json
 
 SHEET_ID = "1G1cOitq2COtwK_IDeZc4UjFvnWYv5_s5IGgoPuvmfMA"
 lGID = [
@@ -19,40 +19,37 @@ tListWeaponLicense = ["Aucun"]
 for GID in lGID:
     sResponse = requests.get(sURL.replace("GID", GID))
     if sResponse.status_code == 200:
-        with open(f"sheet_{GID}.csv", "w", newline='', encoding='utf-8') as csvfile:
-            sValue = sResponse.text
-            sValue = sValue.replace("vv vvvvvvvvv ", "")
-            sValue = sValue.replace("p ", "")
-            sValue = sValue.replace("ADMINISTRATIVE CONTROL SUBDIVISION INFORMATIONS PERSONNELLES NOM & Pénom", "RPName")
-            sValue = sValue.replace("Date de naissance", "DateBirth")
-            sValue = sValue.replace("Adresse de résidence", "ResidentialAddress")
-            sValue = sValue.replace("INFORMATIONS SUR L'ARME Catégorie", "Type")
-            sValue = sValue.replace("INFORMATIONS SUR LA LICENCE Catégorie de la licence ", "Type")
-            sValue = sValue.replace("Modèle de l'arme", "NameWeapon")
-            sValue = sValue.replace("Numéro de série", "SerialNumber")
-            sValue = sValue.replace("F ", "")
-            
+        sValue = sResponse.text
+        sValue = sValue.replace("vv vvvvvvvvv ", "")
+        sValue = sValue.replace("p ", "")
+        sValue = sValue.replace("ADMINISTRATIVE CONTROL SUBDIVISION INFORMATIONS PERSONNELLES NOM & Pénom", "RPName")
+        sValue = sValue.replace("Date de naissance", "DateBirth")
+        sValue = sValue.replace("Adresse de résidence", "ResidentialAddress")
+        sValue = sValue.replace("INFORMATIONS SUR L'ARME Catégorie", "Type")
+        sValue = sValue.replace("INFORMATIONS SUR LA LICENCE Catégorie de la licence ", "Type")
+        sValue = sValue.replace("Modèle de l'arme", "NameWeapon")
+        sValue = sValue.replace("Numéro de série", "SerialNumber")
+        sValue = sValue.replace("F ", "")
+        
 
-            csv_reader = csv.DictReader(sValue.splitlines())
+        csv_reader = csv.DictReader(sValue.splitlines())
 
-            if GID == "0":
-                tData0 = [row for row in csv_reader]
-                for row in tData0:
-                    sType = "Aucun" if len(row['Type']) == 0 or row['Type'] == "" else row['Type']
-                    sType = ' '.join(sType.split()).lower().capitalize()
-                    if sType not in tListType:
-                        tListType.append(sType)
-            else:
-                tData1 = {' '.join(row['RPName'].split()).lower(): row for row in csv_reader}
+        if GID == "0":
+            tData0 = [row for row in csv_reader]
+            for row in tData0:
+                sType = "Aucun" if len(row['Type']) == 0 or row['Type'] == "" else row['Type']
+                sType = ' '.join(sType.split()).lower().capitalize()
+                if sType not in tListType:
+                    tListType.append(sType)
+        else:
+            tData1 = {' '.join(row['RPName'].split()).lower(): row for row in csv_reader}
 
-                for row in tData1.values():
-                    sType = "Aucun" if len(row['Type']) == 0 or row['Type'] == "" else row['Type']
-                    sType = ' '.join(sType.split()).lower().capitalize()
+            for row in tData1.values():
+                sType = "Aucun" if len(row['Type']) == 0 or row['Type'] == "" else row['Type']
+                sType = ' '.join(sType.split()).lower().capitalize()
 
-                    if sType not in tListWeaponLicense:
-                        tListWeaponLicense.append(sType)
-
-from tkinter import *
+                if sType not in tListWeaponLicense:
+                    tListWeaponLicense.append(sType)
 
 def center(DFrame, iW, iH):
     iX, iY = DFrame.winfo_screenwidth() / 2 - iW / 2, DFrame.winfo_screenheight() / 2 - iH / 2
@@ -116,13 +113,10 @@ def main(sPage = None):
     canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
     canvas.configure(yscrollcommand=Scroll.set)
 
-    print(len(tData0), len(tData1))
     def Search(sValue = None):
         clear_panel(scrollable_frame)
         i = 0
 
-        print("Searching for:", sValue, sValueOptionValue.get())
-        
         for tDataSheet in tData0:
 
             sRPName = ' '.join(tDataSheet['RPName'].split()).lower()
@@ -146,8 +140,10 @@ def main(sPage = None):
                 if sValueOptionValueLicense.get() != "Aucun" and sTypeLicense != sValueOptionValueLicense.get():
                     continue
 
+                sRPNameInverse = ' '.join(tDataSheet['RPName'].split()[::-1]).lower()
                 if not (sValue in sSerialNumber.lower() or
                         sValue in sRPName or
+                        sValue in sRPNameInverse or
                         sValue in tDataSheet['NameWeapon'].lower() or
                         sValue in tDataSheet['DateBirth'].lower() or
                         sValue in tDataSheet['ResidentialAddress'].lower()):
