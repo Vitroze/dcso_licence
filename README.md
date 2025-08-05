@@ -4,7 +4,7 @@ Cet outil est destiné au DCSO (Davidson County Sheriff's Office) du serveur GTA
 
 ## Description
 
-Ce programme permet de rechercher et de filtrer les licences d'armes et permis port d'arme des joueurs du serveur GTACity RP. Il utilise des données extraites de [Google Sheets](https://docs.google.com/spreadsheets/d/1G1cOitq2COtwK_IDeZc4UjFvnWYv5_s5IGgoPuvmfMA/) et propose une interface graphique simple via Tkinter.
+Ce programme permet de rechercher et de filtrer les licences d'armes et les déclarations d'armes des joueurs du serveur GTACity RP. Il utilise des données extraites du [Google Sheets](https://docs.google.com/spreadsheets/d/1G1cOitq2COtwK_IDeZc4UjFvnWYv5_s5IGgoPuvmfMA/) et propose une interface graphique simple via Tkinter.
 
 ## Fonctionnalités
 
@@ -12,11 +12,12 @@ Ce programme permet de rechercher et de filtrer les licences d'armes et permis p
 - Filtrage par type d'arme et type de permis
 - Affichage des résultats dans une interface graphique
 - Seuls les 1000 premiers résultats sont affichés
+- Les données s'actualiserons automatiquement au démarrage de l'application.
 
 ## Installation
 
-1. Installez Python 3.x
-2. Installez les dépendances avec le fichier `requirements.txt` :
+1. Installez Python 3.x ([Site officiel](https://www.python.org/downloads/) ; [Microsoft Store](https://apps.microsoft.com/detail/9pnrbtzxmb4z?hl=en-US&gl=US))
+2. Installez les dépendances avec le fichier `requirements.txt`. Vous pouvez exécutez les commandes via l'invite de commande de windows (CMD) ou le powershell :
 
 ```powershell
 pip install -r requirements.txt
