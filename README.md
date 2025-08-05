@@ -46,7 +46,7 @@ Puis lancez la commande suivante :
 python -m PyInstaller --onefile --clean --noconsole main.py
 ```
 
-Le fichier exécutable sera généré dans le dossier `dist`.
+Le fichier exécutable sera généré dans le dossier `dist`. L'exécutable s'appelera "main.exe"
 
 ## Fichiers
 
