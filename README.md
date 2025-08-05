@@ -1,4 +1,4 @@
-# DCSO Licence Tool
+# DCSO - Firearms License
 
 Cet outil est destiné au DCSO (Davidson County Sheriff's Office) du serveur GTACity RP sur Garry's Mod.
 
