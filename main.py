@@ -62,7 +62,8 @@ def clear_panel(DFrame: Tk):
     for widget in DFrame.winfo_children():
         widget.destroy()
 
-def main(sPage = None): 
+iLimitShow = 1000
+def main(): 
     global DFrame
 
     if DFrame is not None:        
@@ -84,6 +85,10 @@ def main(sPage = None):
 
     DLabel2 = Label(DFrame, text="Type d'arme", font=("Arial", 8))
     DLabel2.place(x=240, y=40)
+
+    DLabelInfo = Label(DFrame, text=f"Il y a {len(tData0)} valeurs.\nSeul les {iLimitShow} premiers seront affichés", font=("Arial", 8), justify="right")
+    DLabelInfo.place(x=800, y=40, anchor="e")
+
     sValueOptionValue = StringVar(value="Aucun")
     DComboBox = OptionMenu(DFrame, sValueOptionValue, *tListType)
     DComboBox.place(x=240, y=60, width=220)
@@ -156,7 +161,7 @@ def main(sPage = None):
             DLabel = Label(DPanel, text=f"{' '.join(tDataSheet['RPName'].split())} - {tDataSheet['NameWeapon']} ({tDataSheet['SerialNumber']}) - Permis : {sPermis}", font=("Arial", 12), bg="lightgrey")
             DLabel.place(x=10, y=10)
 
-            if i >= 1000:
+            if i >= iLimitShow:
                 break
 
             i += 1

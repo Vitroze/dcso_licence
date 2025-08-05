@@ -32,6 +32,22 @@ Lancez le programme principal :
 python main.py
 ```
 
+## Compilation en exécutable (.exe)
+
+Pour compiler le programme en un exécutable Windows (.exe), installez PyInstaller :
+
+```powershell
+pip install pyinstaller
+```
+
+Puis lancez la commande suivante :
+
+```powershell
+python -m PyInstaller --onefile --clean --noconsole main.py
+```
+
+Le fichier exécutable sera généré dans le dossier `dist`.
+
 ## Fichiers
 
 - `main.py` : Script principal
@@ -45,5 +61,5 @@ Vitroze
 Ce projet est destiné à un usage interne pour le DCSO sur le serveur GTACity RP (Garry's Mod).
 
 ## Aperçu
-<img width="1038" height="723" alt="image" src="https://github.com/user-attachments/assets/908dcdf0-5327-4766-af51-b2e5fd213d26" />
 
+<img width="1038" height="723" alt="image" src="https://github.com/user-attachments/assets/908dcdf0-5327-4766-af51-b2e5fd213d26" />
