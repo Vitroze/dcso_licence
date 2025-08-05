@@ -43,3 +43,7 @@ Vitroze
 ## Remarques
 
 Ce projet est destiné à un usage interne pour le DCSO sur le serveur GTACity RP (Garry's Mod).
+
+## Aperçu
+<img width="1038" height="723" alt="image" src="https://github.com/user-attachments/assets/908dcdf0-5327-4766-af51-b2e5fd213d26" />
+
