@@ -20,8 +20,6 @@ for GID in lGID:
     sResponse = requests.get(sURL.replace("GID", GID))
     if sResponse.status_code == 200:
         with open(f"sheet_{GID}.csv", "w", newline='', encoding='utf-8') as csvfile:
-            # Save CSV file to JSON format
-
             sValue = sResponse.text
             sValue = sValue.replace("vv vvvvvvvvv ", "")
             sValue = sValue.replace("p ", "")
@@ -36,13 +34,10 @@ for GID in lGID:
             
 
             csv_reader = csv.DictReader(sValue.splitlines())
-            #data = [row for row in csv_reader]
 
             if GID == "0":
                 tData0 = [row for row in csv_reader]
-                # Ajout a la liste. Si la valeur existe alors on fait rien 
                 for row in tData0:
-                    # tData0 if GID == "0" else tData1
                     sType = "Aucun" if len(row['Type']) == 0 or row['Type'] == "" else row['Type']
                     sType = ' '.join(sType.split()).lower().capitalize()
                     if sType not in tListType:
@@ -56,9 +51,6 @@ for GID in lGID:
 
                     if sType not in tListWeaponLicense:
                         tListWeaponLicense.append(sType)
-            with open(f"sheet_{GID}.json", "w", encoding='utf-8') as jsonfile:
-                json.dump(tData0 if GID == "0" else tData1, jsonfile, ensure_ascii=False, indent=4)
-
 
 from tkinter import *
 
@@ -85,12 +77,8 @@ def main(sPage = None):
     DFrame.geometry(center(DFrame, 800, 500))
     DFrame.protocol("WM_DELETE_WINDOW", DFrame.quit)
 
-   # iTotalWidth = (130 * len(tButton)) + (20 * (len(tButton) - 1))
-
     DLabel = Label(DFrame, text="Rechercher par numéro série, nom, prénom,\nadresse de résidence et date de naissance", font=("Arial", 8))
     DLabel.place(x=10, y=20)
-
-
     
     DTextSearch = Entry(DFrame)
     DTextSearch.insert(END, "")
@@ -168,7 +156,6 @@ def main(sPage = None):
             DPanel = Frame(scrollable_frame, width=760, height=40, bg="lightgrey")
             DPanel.grid(row=i, column=0, pady=5, padx=10)
 
-        # print(tDataSheet)
             sPermis = tData1.get(sRPName, {}).get("Type", "Aucun")
             DLabel = Label(DPanel, text=f"{' '.join(tDataSheet['RPName'].split())} - {tDataSheet['NameWeapon']} ({tDataSheet['SerialNumber']}) - Permis : {sPermis}", font=("Arial", 12), bg="lightgrey")
             DLabel.place(x=10, y=10)
@@ -177,15 +164,6 @@ def main(sPage = None):
                 break
 
             i += 1
-
-    # iXStart = (800 - iTotalWidth) // 2
-    # for sName, fCommand in tButton.items():
-    #     DButton = Button(DFrame, text=sName, command=lambda f=fCommand: startPanel(f, main))
-
-    #     iX = iXStart + (iCount) * (130 + 20)
-    #     DButton.place(width=130, height=40, x=iX, y=(500 - 40) // 2)
-
-    #     iCount += 1
 
     Search()
     DFrame.mainloop()
